@@ -2,11 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\include",
-    "\\include\\connectivity",
+    "\\include\\control",
+    "\\include\\core",
     "\\src",
-    "\\src\\connectivity",
-    "\\src\\lights"
+    "\\src\\display",
+    "\\src\\lights",
+    "\\src\\safety",
+    "\\src\\sensors",
+    "\\src\\utils"
   ],
-  "SelectedNode": "\\semismart_exztra.ino",
+  "SelectedNode": "\\include\\core\\system_config.h",
   "PreviewInSolutionExplorer": false
 }

@@ -55,6 +55,7 @@ void ControlSystem::updateFanState() {
 	uint32_t stateDuration = currentTime - stateStartTime;
 	static uint32_t startFanCycleTime = 0;
 	float heaterTemp = readThermistorTemperature() / 10.0f;
+
 	// Thermal security has highest priority and can force COOLDOWN state
 	if (isCooldownRequired() && fanState != FAN_COOLDOWN) {
 		setFanState(FAN_COOLDOWN);
@@ -101,14 +102,18 @@ void ControlSystem::updateFanState() {
 		break;
 	case FAN_STANDBY_CYCLING_ON:
 		if (stateManager.getControlMode() == CONTROL_AUTO_TEMP || stateManager.getControlMode() == CONTROL_USER_TEMP) {
-			if ((sensorManager.getTemperature() < TEMP_MAX)	&& (sensorManager.getTemperature() < stateManager.getTargetTemp()) && !HeatCoolOffFlag) {
+			if ((sensorManager.getTemperature() < TEMP_MAX)
+				&& (sensorManager.getTemperature() < stateManager.getTargetTemp())
+				&& !HeatCoolOffFlag) {
 				setHeaterPower(updateHeaterControl());
 			}
-			else if ((sensorManager.getTemperature() > stateManager.getTargetTemp()) && !HeatCoolOffFlag) {
+			else if ((sensorManager.getTemperature() > stateManager.getTargetTemp())
+				&& !HeatCoolOffFlag) {
 				setHeaterPower(0);
 				HeatCoolOffFlag = true;
 			}
-			else if ((heaterTemp < sensorManager.getTemperature()) && HeatCoolOffFlag) {
+			else if ((heaterTemp < sensorManager.getTemperature()) 
+				&& HeatCoolOffFlag) {
 				setHeaterPower(0);
 				HeatCoolOffFlag = false;
 				setFanState(FAN_STANDBY_CYCLING_OFF);
@@ -116,15 +121,19 @@ void ControlSystem::updateFanState() {
 		}
 
 		if (stateManager.getControlMode() == CONTROL_AUTO_HUM || stateManager.getControlMode() == CONTROL_USER_HUM) {
-			if ((sensorManager.getTemperature() < TEMP_MAX)	&& (sensorManager.getHumidity() > stateManager.getTargetHumidity())	&& !HeatCoolOffFlag) {
+			if ((sensorManager.getTemperature() < TEMP_MAX)
+				&& (sensorManager.getHumidity() > stateManager.getTargetHumidity())
+				&& !HeatCoolOffFlag) {
 				setHeaterPower(updateHeaterControl());
 			}
-			else if ((sensorManager.getHumidity() < stateManager.getTargetHumidity()) && !HeatCoolOffFlag) {
+			else if ((sensorManager.getHumidity() < stateManager.getTargetHumidity())
+				&& !HeatCoolOffFlag) {
 				setHeaterPower(0);
 				startFanCycleTime = currentTime;
 				HeatCoolOffFlag = true;
 			}
-			else if ((heaterTemp < sensorManager.getTemperature()) && HeatCoolOffFlag) {
+			else if ((heaterTemp < sensorManager.getTemperature()) 
+				&& HeatCoolOffFlag) {
 				setFanState(FAN_STANDBY_CYCLING_OFF);
 				HeatCoolOffFlag = false;
 			}
@@ -147,10 +156,10 @@ void ControlSystem::updateFanState() {
 		else if (stateManager.isSystemOff()) {
 			setFanState(FAN_STANDBY_OFF);
 		}
-		else if ((stateManager.getControlMode() == CONTROL_AUTO_TEMP || stateManager.getControlMode() == CONTROL_USER_TEMP) 
+		else if ((stateManager.getControlMode() == CONTROL_AUTO_TEMP || stateManager.getControlMode() == CONTROL_USER_TEMP)
 			&& (sensorManager.getTemperature() < (stateManager.getTargetTemp() - 3.0f))) {
 			setFanState(FAN_STANDBY_CYCLING_ON);
-		} 
+		}
 		else if ((stateManager.getControlMode() == CONTROL_AUTO_HUM || stateManager.getControlMode() == CONTROL_USER_HUM)
 			&& (sensorManager.getHumidity() > (stateManager.getTargetHumidity() + 2.0f))) {
 			setFanState(FAN_STANDBY_CYCLING_ON);

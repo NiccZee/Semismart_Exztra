@@ -29,10 +29,10 @@
 #define FAN_SPEED_OFF 0                    // 0% - Fan off
 
 // ===================== Safety configuration =====================
-#define TEMP_MAX 45     // Maximum 45°C for safe operation
+#define TEMP_MAX 50     // Maximum 45°C for safe operation
 #define TEMP_MIN 15     // Minimum 15°C to avoid condensation
 #define DEFAULT_TEMP 35 // 35°C default (conservative for PLA and sensitive filaments)
-#define SECURITY_TEMP_SAFE_MAX 55
+#define SECURITY_TEMP_SAFE_MAX 60
 #define SECURITY_TEMP_SAFE_MIN 0
 
 // ===================== Temperature and humidity limits =====================
@@ -92,18 +92,15 @@
 #define ADC_MAX 1023.0  // 10-bit ADC
 #define VCC 5.0        // Supply voltage for thermistor (5V for Nano)
 #endif
-//#define KPH 2.8f   // proportional gain (tune between 5–12)
-//#define KIH 0.25f
-//#define KDH 1.5f
+
 #define FULL_POWER_TEMP          (SECURITY_MAX_HEATER_TEMP - 4.0f)  // 55.0°C
 #define MIN_HEATER_POWER         183   // minimum sustaining power (≈ 15%)
 #define HARD_CUTOFF_TEMP         (SECURITY_MAX_HEATER_TEMP + 0.5f)   // 61°C
 
-
 // ===================== Thermal security system configuration =====================
-#define SECURITY_MAX_HEATER_TEMP 60.0        // Maximum heater temperature (°C)
-#define SECURITY_PROTECTION_THRESHOLD 65.0   // Protection activation threshold (°C)
-#define SECURITY_RECOVERY_THRESHOLD 58.0     // Recovery threshold (°C)
+#define SECURITY_MAX_HEATER_TEMP (TEMP_FUSE - 10.0f)        // Maximum heater temperature (°C)
+#define SECURITY_PROTECTION_THRESHOLD (TEMP_FUSE - 5.0f)  // Protection activation threshold (°C)
+#define SECURITY_RECOVERY_THRESHOLD (TEMP_FUSE - 2.0f)     // Recovery threshold (°C)
 
 #define SECURITY_PROTECTION_TIME 5000        // Minimum protection time (5 sec)
 #define SECURITY_COOLDOWN_TIME 15000         // Cooldown time for thermal protection (30 sec)

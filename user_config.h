@@ -16,9 +16,9 @@
   (Set 1 for the one you are using, and 0 for the others to save memory)
 */
 #define DISPLAY_TYPE_SSD1306  0
-#define DISPLAY_TYPE_SH110X   0
+#define DISPLAY_TYPE_SH110X   1
 #define DISPLAY_TYPE_SSD1351  0
-#define DISPLAY_TYPE_ST7796S  1
+#define DISPLAY_TYPE_ST7796S  0
 
 // Compile-time check: ensure exactly one display type is set to 1.
 #define DISPLAY_TYPE_COUNT (DISPLAY_TYPE_SSD1306 + DISPLAY_TYPE_SH110X + DISPLAY_TYPE_SSD1351 + DISPLAY_TYPE_ST7796S)
@@ -42,6 +42,8 @@
 // Set TEMP_SENSOR to 1 to run WITH the temp sensor and the appropriate modifications.
 // ==============================================================================
 #define TEMP_SENSOR 1
+#define TEMP_FUSE 85 // Temperature in Celsius at which the thermal fuse is stated for (e.g. 70C/16A).
+                     // Adjust according to what you have installed.
 
 // ===================== ARDUINO VERSION USED ===========================
 // Select which version of the Arduino module you are using.
@@ -53,6 +55,7 @@
 // We can enable additional features like LED animations. Disable if you don't intend 
 // to use LED strip to save memory for other features.
 #define LED_MANAGER_ENABLED 0	// Enable LED animations (requires WS2812B LEDs)
+#define NUMBER_OF_LEDS 120		// Set this to the number of LEDs in your strip (e.g. 120 for 1m of WS2812B at 30 LEDs/meter)
 
 // ===================== Bluetooth Integration =====================
 // Disable if you don't need Bluetooth connectivity to save memory
@@ -73,7 +76,7 @@
 // ===================== Breadboard usage =====================
 // Set this setting to 1 of you want to use the Arduino on a 
 // breadboard to test out functionality or do own coding.
-#define BREADBOARD 0
+#define BREADBOARD 1
 // ==============================================================================
 
 // ===================== Unit configuration =====================

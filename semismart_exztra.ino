@@ -52,6 +52,7 @@ and update the display initialization accordingly. Just remember to comment out 
 // Specialized modules
 #include "include/control/pid_manager.h"
 #include "include/safety/thermal_security.h"
+
 #if DISPLAY_TYPE_SSD1306
 #include "include/display/view_manager_sh1306.h"
 
@@ -64,13 +65,14 @@ and update the display initialization accordingly. Just remember to comment out 
 #elif DISPLAY_TYPE_ST7796S
 #include "include/display/view_manager_st7796s.h"
 #endif
+
 #include "include/interface/gpio_interface.h"
 #include "include/sensors/sensors.h"
 
 #if LED_MANAGER_ENABLED
 //  Add LEDs  ************************************************************
 #include "include/lights/LEDManager.h"
-LEDManager ledManager(12, 120);  // (pin, number of LEDs)
+LEDManager ledManager(12, NUMBER_OF_LEDS);  // (pin, number of LEDs)
 // End Add LEDs************************************************************
 #endif
 

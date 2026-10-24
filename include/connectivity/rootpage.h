@@ -372,11 +372,11 @@ input[type='range']::-moz-range-thumb {
     <div class="divider"></div>
 
     <div class="sensor-row">
-        <div class="sensor-item"><span class="label">Temperature:</span><span class="reading"><span id="tempValue" class="value">--</span>°C</span></div>
-        <div class="sensor-item"><span class="label">Humidity:</span><span class="reading"><span id="humValue" class="value">--</span>%</span></div>
+        <div class="sensor-item"><span class="label">Temperature:</span><span class="reading"><span id="tempValue" class="value">--</span><b>°C</b></span></div>
+        <div class="sensor-item"><span class="label">Humidity:</span><span class="reading"><span id="humValue" class="value">--</span><b>%</b></span></div>
         <div class="sensor-item"><span class="label">Fan Speed:</span><span class="reading"><span id="fanSpeedValue" class="value">--</span></span></div>
         <div class="sensor-item"><span class="label">Heater power:</span><span class="reading"><span id="heatPowerValue" class="value">--</span></span></div>
-        <div class="sensor-item"><span class="label">Heater Temp:</span><span class="reading"><span id="heaterTempValue" class="value">--</span>°C</span></div>
+        <div class="sensor-item"><span class="label">Heater Temp:</span><span class="reading"><span id="heaterTempValue" class="value">--</span><b>°C</b></span></div>
         <div class="divider"></div>
     </div>
 
